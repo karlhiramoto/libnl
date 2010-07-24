@@ -30,6 +30,7 @@
 #define QUEUE_MSG_ATTR_HWADDR		(1UL << 11)
 #define QUEUE_MSG_ATTR_PAYLOAD		(1UL << 12)
 #define QUEUE_MSG_ATTR_VERDICT		(1UL << 13)
+#define QUEUE_MSG_ATTR_CONNBYTES	(1UL << 14)
 /** @endcond */
 
 static void nfnl_queue_msg_free_data(struct nl_object *c)
@@ -267,6 +268,22 @@ int nfnl_queue_msg_test_hook(const struct nfnl_queue_msg *msg)
 uint8_t nfnl_queue_msg_get_hook(const struct nfnl_queue_msg *msg)
 {
 	return msg->queue_msg_hook;
+}
+
+void nfnl_queue_msg_set_connbytes(struct nfnl_queue_msg *msg, uint32_t bytes)
+{
+	msg->queue_msg_connbytes = bytes;
+	msg->ce_mask |= QUEUE_MSG_ATTR_CONNBYTES;
+}
+
+int nfnl_queue_msg_test_connbytes(const struct nfnl_queue_msg *msg)
+{
+	return !!(msg->ce_mask & QUEUE_MSG_ATTR_CONNBYTES);
+}
+
+uint32_t nfnl_queue_msg_get_connbytes(const struct nfnl_queue_msg *msg)
+{
+	return msg->queue_msg_connbytes;
 }
 
 void nfnl_queue_msg_set_mark(struct nfnl_queue_msg *msg, uint32_t mark)

@@ -183,6 +183,11 @@ struct nl_msg *nfnl_queue_msg_build_verdict(const struct nfnl_queue_msg *msg)
 			ntohl(nfnl_queue_msg_get_mark(msg))) < 0)
 		goto nla_put_failure;
 
+	if (nfnl_queue_msg_test_connbytes(msg) &&
+		nla_put_u32(nlmsg, NFQA_ACCEPT_CONNBYTES,
+			htonl(nfnl_queue_msg_get_connbytes(msg))) < 0)
+		goto nla_put_failure;
+
 	return nlmsg;
 
 nla_put_failure:

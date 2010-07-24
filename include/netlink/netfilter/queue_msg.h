@@ -52,6 +52,10 @@ extern void			nfnl_queue_msg_set_hook(struct nfnl_queue_msg *, uint8_t);
 extern int			nfnl_queue_msg_test_hook(const struct nfnl_queue_msg *);
 extern uint8_t			nfnl_queue_msg_get_hook(const struct nfnl_queue_msg *);
 
+extern void nfnl_queue_msg_set_connbytes(struct nfnl_queue_msg *, uint32_t );
+extern int nfnl_queue_msg_test_connbytes(const struct nfnl_queue_msg *);
+extern uint32_t nfnl_queue_msg_get_connbytes(const struct nfnl_queue_msg *);
+
 extern void			nfnl_queue_msg_set_mark(struct nfnl_queue_msg *, uint32_t);
 extern int			nfnl_queue_msg_test_mark(const struct nfnl_queue_msg *);
 extern uint32_t			nfnl_queue_msg_get_mark(const struct nfnl_queue_msg *);

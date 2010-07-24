@@ -813,6 +813,7 @@ struct nfnl_queue_msg {
 	uint16_t		queue_msg_hwproto;
 	uint32_t		queue_msg_packetid;
 	uint32_t		queue_msg_mark;
+	uint32_t		queue_msg_connbytes;
 	struct timeval		queue_msg_timestamp;
 	uint32_t		queue_msg_indev;
 	uint32_t		queue_msg_outdev;
